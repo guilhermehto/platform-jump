@@ -4,6 +4,9 @@ extends Node
 export(Array) var platforms
 export(Array) var special_platforms
 
+onready var player = $Player
+onready var score_text = $UI/Score
+
 const MIN_INTERVAL = 100
 const MAX_INTERVAL = 250
 const INITIAL_PLATFORMS_COUNT = 40
@@ -22,6 +25,10 @@ func _ready():
 	current_min_interval = MIN_INTERVAL
 	screen_size = get_viewport().get_visible_rect().size.x
 	_spawn_first_platforms()
+
+func _process(delta):
+	score_text.text = str(player.score)
+
 
 func _spawn_first_platforms():
 	for counter in range(INITIAL_PLATFORMS_COUNT):

@@ -401,7 +401,7 @@ WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 _sections_unfolded = [ "Button", "Button/colors", "Button/styles", "GraphEdit" ]
 
-[node name="Menu" type="Node" index="0"]
+[node name="Menu" type="Node"]
 
 script = ExtResource( 1 )
 
