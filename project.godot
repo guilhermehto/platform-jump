@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="Platform Jump"
-run/main_scene="res://scenes/Game.tscn"
+run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LevelManager="*res://scripts/LevelManager.gd"
 
 [display]
 
