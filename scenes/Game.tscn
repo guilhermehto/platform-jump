@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/GrassPlatform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/GrassPlatformSmall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/GrassPlatformBreak.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/MovingGrassPlatform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 platforms = [ ExtResource( 2 ), ExtResource( 3 ) ]
-special_platforms = [ ExtResource( 4 ) ]
+special_platforms = [ ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="GrassPlatform" parent="." index="0" instance=ExtResource( 2 )]
 
@@ -28,7 +29,7 @@ position = Vector2( 216.302, 231.481 )
 
 position = Vector2( 565.422, 1366.12 )
 
-[node name="Player" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 512.846, 32.3212 )
 
