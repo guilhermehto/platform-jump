@@ -30,4 +30,6 @@ position = Vector2( 565.422, 1366.12 )
 
 position = Vector2( 512.846, 32.3212 )
 
+[connection signal="just_jumped" from="Player" to="." method="_on_Player_just_jumped"]
+
 

@@ -44,8 +44,15 @@ func _spawn_platform():
 	current_min_interval = clamp(current_min_interval, MIN_INTERVAL, MAX_INTERVAL / 0.75)
 	
 	
-	
-	
-	
 
 
+
+func _on_Player_just_jumped():
+	for counter in range(3):
+		_spawn_platform()
+	
+	
+	
+	
+	
+	

@@ -16,6 +16,10 @@ var half_sprite_width
 var jumping = false
 var current_jump_force = 0
 var current_gravity = 0
+var highest_reached_position = 300
+var death_position_offset = 1200
+
+signal just_jumped
 
 
 
@@ -32,7 +36,11 @@ func _process(delta):
 	else:
 		position.y -= current_jump_force
 		_decrement_jump(delta)
-		
+	
+	
+	highest_reached_position = position.y if position.y < highest_reached_position else highest_reached_position
+	if position.y >= highest_reached_position + death_position_offset:
+		die()
 	
 	if Input.is_action_pressed("ui_left"):
 		position.x -= speed * delta
@@ -40,6 +48,8 @@ func _process(delta):
 		position.x += speed * delta
 	elif Input.is_action_pressed("ui_accept"):
 		jump()
+	
+	_check_boundaries()
 	
 	
 	
@@ -52,7 +62,11 @@ func jump():
 	jumping = true
 	current_jump_force = JUMP_FORCE
 	animated_sprite.play("jump")
-	
+	emit_signal("just_jumped")
+
+
+func die():
+	get_tree().reload_current_scene()
 
 
 func _increment_gravity(delta):
@@ -68,8 +82,14 @@ func _decrement_jump(delta):
 		animated_sprite.play("idle")
 	
 	
-	
-	
+
+func _check_boundaries():
+	if position.x > screen_width:
+		position.x = 0
+	elif position.x < 0:
+		position.x = screen_width
+
+
 
 
 
