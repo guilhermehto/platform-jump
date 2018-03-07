@@ -1,12 +1,11 @@
 extends Area2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+onready var sprite = $Sprite
+var sprite_half_width
 
 func _ready():
 	connect("body_entered", self, "_on_body_entered")
-	pass
+	sprite_half_width = sprite.texture.get_size().x / 2 * scale.x
 
 func _on_body_entered(body):
 	if body.name == "Player":
