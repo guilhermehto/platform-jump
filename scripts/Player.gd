@@ -1,7 +1,11 @@
 extends KinematicBody2D
 
 
+const JUMP_SOUND_PATH = "res://audio/jump.wav"
+const IMPULSE_PATH = "res://audio/impulse.wav"
+
 onready var animated_sprite = $AnimatedSprite
+onready var audio = $Audio
 
 const GRAVITY = 1500
 const GRAVITY_INCREMENT = 2500
@@ -20,6 +24,9 @@ var highest_reached_position = 300
 var death_position_offset = 1200
 var score = 0
 
+var jump_audio
+var impulse_audio
+
 
 signal just_jumped
 
@@ -30,7 +37,8 @@ func _ready():
 	screen_width = get_viewport_rect().size.x
 	half_sprite_width = animated_sprite.frames.get_frame("idle", 0).get_width() / 2
 	current_gravity = GRAVITY
-	
+	jump_audio = load(JUMP_SOUND_PATH)
+	impulse_audio = load(IMPULSE_PATH)
 
 func _process(delta):
 	if !jumping:
@@ -68,6 +76,8 @@ func jump():
 	current_jump_force = JUMP_FORCE
 	animated_sprite.play("jump")
 	emit_signal("just_jumped")
+	audio.stream = jump_audio
+	audio.play()
 
 func add_impulse(impulse):
 	emit_signal("just_jumped")
@@ -75,6 +85,8 @@ func add_impulse(impulse):
 	jumping = true
 	current_jump_force = impulse
 	animated_sprite.play("jump")
+	audio.stream = impulse_audio
+	audio.play()
 
 func die():
 	$"/root/PlayerData".save_highscore(score)

@@ -24,7 +24,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 z_index = 1
 input_pickable = false
@@ -70,5 +70,15 @@ editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit" ]
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = null
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
